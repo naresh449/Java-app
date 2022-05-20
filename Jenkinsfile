@@ -1,20 +1,21 @@
-pipeline {
+ipipeline {
   agent any
   stages {
     stage('Fetch code ') {
       steps {
-        git branch:  'master', url:  'https://github.com/naresh449/'
+        git branch:  'master', url:  'https://github.com/naresh449/Java-app.git'
       }
     }
     stage ('build') {
       steps {
-        sh 'mvn install'
+        mvnHOME = tool 'mymaven'
+        sh "${mvnHOME} install"
 
       }
     }
     stage ('test') {
       steps {
-        sh 'mvn test'
+        sh "${mvnHOME} test"
       }
     }
   }
